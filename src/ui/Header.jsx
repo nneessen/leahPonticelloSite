@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-
 import HeaderMenu from "./HeaderMenu";
 
 export default function Header() {
   return (
     <StyledHeader>
-      <MyName>Nick Neessen</MyName>
+      <MyName></MyName>
       <HeaderMenu />
     </StyledHeader>
   );
@@ -35,5 +34,4 @@ const MyName = styled.div`
 
   @media (max-width: 768px) {
     display: none;
-  }
 `;

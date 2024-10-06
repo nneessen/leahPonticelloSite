@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
     <DashboardContainer>
       <Header>
-        <Logo>Nick Neessen</Logo>
+        <Logo>Leah Ponticello</Logo>
         <NavContainer>
           <AgentLogin to="/login">Agent Login</AgentLogin>
           <HamburgerButton
@@ -140,13 +140,13 @@ const MainText = styled.div`
   font-size: 7rem;
   color: #fff;
   font-weight: 500;
-  color: var(--color-brand-50);
+  color: var(--color-brand-500);
 `;
 
 const SubText = styled.p`
   font-family: "Urbanist";
   font-size: 2rem;
-  color: var(--color-brand-50);
+  color: var(--color-brand-400);
   margin-top: 1rem;
 `;
 

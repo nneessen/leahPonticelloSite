@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const FooterContainer = styled.footer`
   background: none;
@@ -127,11 +122,9 @@ export default function Footer() {
       <FooterContent>
         {/* Company Information Section */}
         <FooterSection>
-          <h2>Momentum Financial</h2>
+          <h2>LP Forward Financial</h2>
           <ContactInfo>
-            <p>Email: nick@nickneessen.com</p>
-            <p>Phone: +1 (859) 433-5907</p>
-            <p>Address: 741 N Wells St, Chicago,IL</p>
+            {/* TODO: EMAIL, PHONE, ADDRESS FOR LEAH */}
           </ContactInfo>
         </FooterSection>
 

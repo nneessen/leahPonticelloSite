@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { AGENT } from "../../utils/constants";
 
 const PrivacyPolicy = () => {
   return (
@@ -138,13 +139,13 @@ const PrivacyPolicy = () => {
           practices, please contact us at:
         </Paragraph>
         <ContactInfo>
-          <strong>Nick Neessen</strong>
+          <strong>{AGENT.displayName}</strong>
           <br />
-          Email: <a href="mailto:nick@nickneessen.com">nick@nickneessen.com</a>
+          Email: <a href={`mailto:${AGENT.email}`}>{AGENT.email}</a>
           <br />
-          Phone: 859-433-5907
+          Phone: {AGENT.phone}
           <br />
-          Address: Chicago, IL
+          Address: {AGENT.city}, {AGENT.state}
         </ContactInfo>
       </Section>
     </PolicyContainer>
