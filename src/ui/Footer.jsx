@@ -123,42 +123,23 @@ export default function Footer() {
         {/* Company Information Section */}
         <FooterSection>
           <h2>LP Forward Financial</h2>
-          <ContactInfo>
-            {/* TODO: EMAIL, PHONE, ADDRESS FOR LEAH */}
-          </ContactInfo>
+          <ContactInfo>San Diego, California</ContactInfo>
         </FooterSection>
 
         {/* Quick Links Section */}
         <FooterSection>
           <QuickLinks>
-            <NavLink to="/about">About Us</NavLink>
-            <NavLink to="/services">Services</NavLink>
+            <NavLink to="/about-me">About Us</NavLink>
             <NavLink to="/privacy-policy">Privacy Policy</NavLink>
-            <NavLink to="/terms-conditions">Terms & Conditions</NavLink>
           </QuickLinks>
         </FooterSection>
 
         {/* Social Media Section */}
         <FooterSection>
           <SocialIconsContainer>
-            <h3>Follow Us</h3>
             <SocialIcons>
               <a
-                href="https://www.facebook.com/profile.php?id=61564513765585"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebookF />
-              </a>
-              <a
-                href="https://www.instagram.com/momentumfinancial"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="https://linkedin.com/in/nickneessen"
+                href="https://www.linkedin.com/in/leah-r-ponticello-aba0abb/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -170,7 +151,8 @@ export default function Footer() {
       </FooterContent>
 
       <Copyright>
-        © {new Date().getFullYear()} Momentum Financial. All Rights Reserved.
+        © {new Date().getFullYear()} LP Forward Financial | All Rights
+        Reserved.
       </Copyright>
     </FooterContainer>
   );

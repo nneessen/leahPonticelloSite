@@ -1,9 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../ui/Button";
-
-// Styled Components
+import { AGENT } from "../utils/constants";
 
 const PageContainer = styled.div`
   display: flex;
@@ -134,19 +132,15 @@ export default function Credentials() {
       <StyledLink to="/book-consultation">Book a Consultation</StyledLink>
       <StyledHeader>Credentials</StyledHeader>
       <Divider />
-      <Content>National Producer License #: 21272688</Content>
+      <Content>
+        National Producer License #: {AGENT.nationalProducerNumber}
+      </Content>
       <LicenseCard>
         <p>I currently hold licenses in the following states:</p>
         <StateList>
-          <StateItem>Illinois (IL)</StateItem>
-          <StateItem>Texas (TX)</StateItem>
-          <StateItem>Kansas (KS)</StateItem>
-          <StateItem>South Carolina (SC)</StateItem>
-          <StateItem>Arizona (AZ)</StateItem>
-          <StateItem>Maryland (MD)</StateItem>
-          <StateItem>North Carolina (NC)</StateItem>
-          <StateItem>Virginia (VA)</StateItem>
-          <StateItem>Washington (WA)</StateItem>
+          {AGENT.stateLicense.map((state) => (
+            <StateItem key={state}>{state}</StateItem>
+          ))}
         </StateList>
       </LicenseCard>
     </PageContainer>

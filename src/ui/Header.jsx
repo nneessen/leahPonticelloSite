@@ -1,11 +1,9 @@
-import React from "react";
 import styled from "styled-components";
 import HeaderMenu from "./HeaderMenu";
 
 export default function Header() {
   return (
     <StyledHeader>
-      <MyName></MyName>
       <HeaderMenu />
     </StyledHeader>
   );
@@ -26,12 +24,4 @@ const StyledHeader = styled.header`
   @media (max-width: 768px) {
     display: none;
   }
-`;
-
-const MyName = styled.div`
-  font-size: 1.8rem;
-  font-weight: 700;
-
-  @media (max-width: 768px) {
-    display: none;
 `;

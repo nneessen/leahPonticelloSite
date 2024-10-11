@@ -1,27 +1,71 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import styled from "styled-components";
-import bg1 from "../images/backgrounds/bg1.jpg";
+import lp_bg from "../images/backgrounds/lp_bg.jpg";
 import HamburgerMenu from "../ui/HamburgerMenu";
+import Button from "../ui/Button";
+import { NavLink } from "react-router-dom";
+import { AGENT } from "../utils/constants";
+
+const NavItemText = styled.span`
+  font-size: 1.6rem;
+  font-weight: 500;
+`;
+
+const NavList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+`;
+
+const StyledNavLink = styled(NavLink)`
+  &:link,
+  &:visited {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    color: var(--color-grey-900);
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1rem 1rem;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  & span {
+    display: inline;
+  }
+
+  &:hover {
+    color: var(--color-brand-500);
+    font-size: 2.2rem;
+  }
+
+  &.active {
+    color: var(--color-brand-500);
+  }
+`;
 
 const Dashboard = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const openCalendly = () => {
+    window.open(AGENT.calendlyLink);
   };
 
   return (
     <DashboardContainer>
       <Header>
         <Logo>Leah Ponticello</Logo>
-        <NavContainer>
-          <AgentLogin to="/login">Agent Login</AgentLogin>
-          <HamburgerButton
-            onClick={toggleMenu}
-            isMenuOpen={isMenuOpen}
-          ></HamburgerButton>
-        </NavContainer>
+        <NavList>
+          <StyledNavLink to="/dashboard">
+            {<NavItemText>Home</NavItemText>}
+          </StyledNavLink>
+          <StyledNavLink to="/products">
+            {<NavItemText>Products</NavItemText>}
+          </StyledNavLink>
+          <StyledNavLink to="/about-me">
+            {<NavItemText>About Me</NavItemText>}
+          </StyledNavLink>
+        </NavList>
       </Header>
       <HamburgerMenu />
 
@@ -32,9 +76,10 @@ const Dashboard = () => {
             Providing tailored life insurance solutions for every family.
           </SubText>
         </HeroSection>
+        <Button onClick={openCalendly}>Book Consultation</Button>
       </ContentContainer>
 
-      <BackgroundImage src={bg1} alt="Background" />
+      <BackgroundImage src={lp_bg} alt="Background" />
     </DashboardContainer>
   );
 };
@@ -71,19 +116,6 @@ const Logo = styled.div`
 const NavContainer = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const AgentLogin = styled(NavLink)`
-  color: var(--color-brand-50);
-  text-decoration: none;
-  margin-right: 2rem;
-  font-size: 1.5rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #ff6347;
-  }
 `;
 
 const HamburgerButton = styled.div`
@@ -138,37 +170,16 @@ const HeroSection = styled.div`
 const MainText = styled.div`
   font-family: "Urbanist";
   font-size: 7rem;
-  color: #fff;
+  color: var(--color-brand-50);
   font-weight: 500;
-  color: var(--color-brand-500);
+  color: var(--color-brand-50);
 `;
 
 const SubText = styled.p`
   font-family: "Urbanist";
   font-size: 2rem;
-  color: var(--color-brand-400);
-  margin-top: 1rem;
-`;
-
-const ButtonWrapper = styled.div`
-  margin-top: 3rem;
-`;
-
-const StyledButton = styled(NavLink)`
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  background-color: var(--color-brand-500);
   color: var(--color-brand-50);
-  text-decoration: none;
-  border-radius: 5px;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
-
-  &:hover {
-    background-color: #ff4500;
-    transform: scale(1.05); /* Zoom in on hover */
-  }
+  margin-top: 1rem;
 `;
 
 const BackgroundImage = styled.img`

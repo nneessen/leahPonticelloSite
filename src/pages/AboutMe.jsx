@@ -1,9 +1,9 @@
-import React from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
-import headshot1 from "../images/headshots/headshot1.jpg";
+import { AGENT } from "../utils/constants";
+import lp_headshot from "../images/headshots/lp_headshot.JPG";
 
 // Styled Components
 const PageContainer = styled.div`
@@ -133,14 +133,7 @@ const Paragraph = styled.p`
   }
 `;
 
-const Highlight = styled.span`
-  color: var(--color-accent-700);
-  font-weight: bold;
-`;
-
 export default function AboutMe() {
-  const navigate = useNavigate();
-
   // Refs and InView hooks for each card
   const [ref1, inView1] = useInView({
     triggerOnce: true,
@@ -150,26 +143,6 @@ export default function AboutMe() {
     triggerOnce: true,
     threshold: 0.1,
   });
-  const [ref3, inView3] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-  const [ref4, inView4] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-  const [ref5, inView5] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-  const [ref6, inView6] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const goBack = () => {
-    navigate(-1);
-  };
 
   return (
     <PageContainer>
@@ -177,7 +150,6 @@ export default function AboutMe() {
         <NavItems>
           <NavItem to="/">Home</NavItem>
           <NavItem to="/products">Products</NavItem>
-          <NavItem to="/services">Services</NavItem>
           <NavItem to="/credentials">Credentials</NavItem>
         </NavItems>
         <BackButton onClick={goBack}>
@@ -189,73 +161,13 @@ export default function AboutMe() {
       <ContentWrapper>
         <Card ref={ref1} isVisible={inView1}>
           <ImageContainer>
-            <img src={headshot1} alt="Nick Neessen" />
+            <img src={lp_headshot} alt="Leah Ponticello" />
           </ImageContainer>
-          <SubHeader>Introduction</SubHeader>
-          <Paragraph>
-            Hi, I'm Nick Neessen, a <Highlight>37-year-old</Highlight> tech
-            enthusiast, entrepreneur, and lover of life. My journey has taken me
-            across continents and through diverse experiences, each shaping who
-            I am today.
-          </Paragraph>
         </Card>
 
         <Card ref={ref2} isVisible={inView2}>
-          <SubHeader>Background & Journey</SubHeader>
-          <Paragraph>
-            Born in South Korea with my dad serving in the army, I moved to the
-            States at the age of 3. My childhood was a tapestry of cultures and
-            cities, having lived in places like El Paso, Buffalo, Atlanta,
-            Chicago, Miami, and Indianapolis. These experiences enriched my
-            understanding of the world and fueled my passion for learning.
-          </Paragraph>
-        </Card>
-
-        <Card ref={ref3} isVisible={inView3}>
-          <SubHeader>Professional Life</SubHeader>
-          <Paragraph>
-            I'm a <Highlight>self-taught full-stack developer</Highlight> who
-            built this very site you're on. My career has been a blend of
-            technology and entrepreneurship, which led me to create my own
-            wholesale online business supplying auto dealers with quality used
-            inventory. But that’s not all—I’m also a proud partner in one of
-            Kentucky’s largest inflatable bounce house companies. My work is
-            driven by a relentless pursuit of excellence and a deep-seated
-            belief in creating value for others.
-          </Paragraph>
-        </Card>
-
-        <Card ref={ref4} isVisible={inView4}>
-          <SubHeader>Hobbies & Interests</SubHeader>
-          <Paragraph>
-            When I'm not busy building businesses, I love staying physically
-            active, traveling, and exploring new restaurants. I'm a food lover
-            at heart, with a passion for discovering both hidden gems and
-            frequenting my favorite spots. I thrive on social connections and
-            enjoy nothing more than hanging out with friends and creating
-            lasting memories.
-          </Paragraph>
-        </Card>
-
-        <Card ref={ref5} isVisible={inView5}>
-          <SubHeader>Personal Philosophy</SubHeader>
-          <Paragraph>
-            I'm a growth-minded individual, constantly seeking ways to expand my
-            knowledge and skills. My ultimate goal? To become the best version
-            of myself and help others do the same. Whether it's through my work,
-            personal interactions, or community involvement, I believe in making
-            a positive impact wherever I go.
-          </Paragraph>
-        </Card>
-
-        <Card ref={ref6} isVisible={inView6}>
-          <SubHeader>Why It Matters</SubHeader>
-          <Paragraph>
-            Life is a journey, and I'm all about making the most of it. I'm here
-            to grow, to learn, and to share that journey with others. If you're
-            someone who values passion, innovation, and authenticity, then let's
-            connect. Together, we can create something truly extraordinary.
-          </Paragraph>
+          <SubHeader>Background</SubHeader>
+          <Paragraph>{AGENT.bio}</Paragraph>
         </Card>
       </ContentWrapper>
     </PageContainer>
