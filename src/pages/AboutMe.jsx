@@ -4,6 +4,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
 import { AGENT } from "../utils/constants";
 import lp_headshot from "../images/headshots/lp_headshot.JPG";
+import { useMoveBack } from "../hooks/useMoveBack";
 
 // Styled Components
 const PageContainer = styled.div`
@@ -134,6 +135,7 @@ const Paragraph = styled.p`
 `;
 
 export default function AboutMe() {
+  const goBack = useMoveBack();
   // Refs and InView hooks for each card
   const [ref1, inView1] = useInView({
     triggerOnce: true,
