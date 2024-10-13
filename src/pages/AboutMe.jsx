@@ -1,12 +1,48 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
 import { AGENT } from "../utils/constants";
 import lp_headshot from "../images/headshots/lp_headshot.JPG";
 import { useMoveBack } from "../hooks/useMoveBack";
 
+export default function AboutMe() {
+  const goBack = useMoveBack();
+
+  const [ref1, inView1] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [ref2, inView2] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  return (
+    <PageContainer>
+      <BackButton onClick={goBack}>
+        <FaArrowLeft size={20} />
+        Go Back
+      </BackButton>
+
+      <ContentWrapper>
+        <Card ref={ref1} isVisible={inView1}>
+          <ImageContainer>
+            <img src={lp_headshot} alt="Leah Ponticello" />
+          </ImageContainer>
+        </Card>
+
+        <Card ref={ref2} isVisible={inView2}>
+          <SubHeader>Background</SubHeader>
+          <Paragraph>{AGENT.bio}</Paragraph>
+        </Card>
+      </ContentWrapper>
+    </PageContainer>
+  );
+}
+
 // Styled Components
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,56 +52,26 @@ const PageContainer = styled.div`
   overflow-y: auto;
 `;
 
-const NavBar = styled.nav`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: var(--color-brand-500);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-`;
-
-const NavItems = styled.div`
-  display: flex;
-  gap: 2rem;
-`;
-
-const NavItem = styled(Link)`
-  color: var(--color-brand-50);
-  font-size: 1.2rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: var(--color-accent-300);
-  }
-`;
-
 const BackButton = styled.button`
-  display: flex;
-  align-items: center;
+  align-self: flex-start;
+  margin-top: 1rem;
   background: none;
   border: none;
   color: var(--color-accent-200);
   font-size: 1.2rem;
   cursor: pointer;
   transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
   &:hover {
     color: var(--color-accent-400);
   }
-
-  svg {
-    margin-right: 0.5rem;
-  }
 `;
 
 const ContentWrapper = styled.div`
-  margin-top: 100px; /* To prevent content from hiding behind the fixed NavBar */
+  margin-top: 2rem;
   width: 100%;
   max-width: 800px;
   display: flex;
@@ -133,45 +139,3 @@ const Paragraph = styled.p`
     font-size: 1rem;
   }
 `;
-
-export default function AboutMe() {
-  const goBack = useMoveBack();
-  // Refs and InView hooks for each card
-  const [ref1, inView1] = useInView({
-    triggerOnce: true,
-    threshold: 0.1, // Start the animation when 10% of the card is visible
-  });
-  const [ref2, inView2] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  return (
-    <PageContainer>
-      <NavBar>
-        <NavItems>
-          <NavItem to="/">Home</NavItem>
-          <NavItem to="/products">Products</NavItem>
-          <NavItem to="/credentials">Credentials</NavItem>
-        </NavItems>
-        <BackButton onClick={goBack}>
-          <FaArrowLeft size={20} />
-          Back
-        </BackButton>
-      </NavBar>
-
-      <ContentWrapper>
-        <Card ref={ref1} isVisible={inView1}>
-          <ImageContainer>
-            <img src={lp_headshot} alt="Leah Ponticello" />
-          </ImageContainer>
-        </Card>
-
-        <Card ref={ref2} isVisible={inView2}>
-          <SubHeader>Background</SubHeader>
-          <Paragraph>{AGENT.bio}</Paragraph>
-        </Card>
-      </ContentWrapper>
-    </PageContainer>
-  );
-}
