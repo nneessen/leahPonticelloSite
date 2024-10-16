@@ -1,7 +1,121 @@
-import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+
+export default function Footer() {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
+
+  return (
+    <FooterContainer>
+      <FooterContent>
+        {/* Company Information Section */}
+        <FooterSection>
+          <h2>LP Forward Financial</h2>
+          <ContactInfo>San Diego, California</ContactInfo>
+        </FooterSection>
+
+        {/* Quick Links Section */}
+        <FooterSection>
+          <QuickLinks>
+            <NavLink to="/about-me">About Us</NavLink>
+            <NavLink to="/privacy-policy">Privacy Policy</NavLink>
+          </QuickLinks>
+        </FooterSection>
+
+        {/* Social Media Section */}
+        <FooterSection>
+          <SocialIconsContainer>
+            <SocialIcons>
+              <a
+                href="https://www.linkedin.com/in/leah-r-ponticello-aba0abb/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedinIn />
+              </a>
+            </SocialIcons>
+          </SocialIconsContainer>
+        </FooterSection>
+      </FooterContent>
+
+      <Copyright>
+        © {new Date().getFullYear()} LP Forward Financial | All Rights
+        Reserved.
+      </Copyright>
+
+      <FloatingCard>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="phone">
+            Enter your phone # to opt-in to receive text messages:
+          </label>
+          <input
+            type="text"
+            id="phone"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            placeholder="Your phone number"
+            required
+          />
+
+          <button type="submit" disabled={isSubmitted}>
+            {isSubmitted ? "Submitted" : "Submit"}
+          </button>
+        </form>
+        {isSubmitted && <p>Thanks for opting in to receive text messages.</p>}
+      </FloatingCard>
+    </FooterContainer>
+  );
+}
+
+const FloatingCard = styled.div`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  z-index: 100;
+
+  input[type="text"] {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #000;
+    font-size: 1rem;
+  }
+
+  label {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    padding: 0.5rem 1.5rem;
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+
+    &:hover {
+      background-color: #ff4500;
+    }
+  }
+`;
 
 const FooterContainer = styled.footer`
   background: none;
@@ -115,45 +229,3 @@ const Copyright = styled.p`
   text-align: center;
   padding-bottom: 0.5rem; /* Add padding to move it closer to the bottom */
 `;
-
-export default function Footer() {
-  return (
-    <FooterContainer>
-      <FooterContent>
-        {/* Company Information Section */}
-        <FooterSection>
-          <h2>LP Forward Financial</h2>
-          <ContactInfo>San Diego, California</ContactInfo>
-        </FooterSection>
-
-        {/* Quick Links Section */}
-        <FooterSection>
-          <QuickLinks>
-            <NavLink to="/about-me">About Us</NavLink>
-            <NavLink to="/privacy-policy">Privacy Policy</NavLink>
-          </QuickLinks>
-        </FooterSection>
-
-        {/* Social Media Section */}
-        <FooterSection>
-          <SocialIconsContainer>
-            <SocialIcons>
-              <a
-                href="https://www.linkedin.com/in/leah-r-ponticello-aba0abb/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedinIn />
-              </a>
-            </SocialIcons>
-          </SocialIconsContainer>
-        </FooterSection>
-      </FooterContent>
-
-      <Copyright>
-        © {new Date().getFullYear()} LP Forward Financial | All Rights
-        Reserved.
-      </Copyright>
-    </FooterContainer>
-  );
-}
